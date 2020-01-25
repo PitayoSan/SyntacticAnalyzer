@@ -1,0 +1,67 @@
+1. isGeneratedByCFG("aabbab", "S->AB|SS|AC|BD|BA\nA->a\nB->b\nC->SB\nD->SA")
+singleCharacter = true;
+
+correct output:
+A	null	null	S	D	S	
+null	A	S	C	S	C	
+null	null	B	null	null	null	
+null	null	null	B	S	C	
+null	null	null	null	A	S	
+null	null	null	null	null	B	
+true
+
+
+2. isGeneratedByCFG("bbab","S->AB|BC\nA->AB|a\nB->CC|b\nC->AB|a")
+singleCharacter = true;
+
+correct output:
+B	null	null	null	
+null	B	S	S	
+null	null	AC	ASC	
+null	null	null	B	
+false
+
+
+3. isGeneratedByCFG("baaba","S->AB|BC\nA->BA|a\nB->CC|b\nC->AB|a")
+singleCharacter = true;
+
+correct output:
+B	AS	null	null	ASC	
+null	AC	B	B	ASC	
+null	null	AC	SC	B	
+null	null	null	B	AS	
+null	null	null	null	AC	
+true
+
+4. isGeneratedByCFG("aaabbbcc","S->AB\nA->CD|CF\nB->c|EB\nC->a\nD->b\nE->c\nF->AD"));
+singleCharacter = true;
+correct output:
+C	null	null	null	null	A	S	S	
+null	C	null	null	A	F	null	null	
+null	null	C	A	F	null	null	null	
+null	null	null	D	null	null	null	null	
+null	null	null	null	D	null	null	null	
+null	null	null	null	null	D	null	null	
+null	null	null	null	null	null	BE	B	
+null	null	null	null	null	null	null	BE	
+true
+
+5. isGeneratedByCFG("a very heavy orange book","S->DA\nA->book|orange|BA\nB->heavy|orange|EC\nC->heavy|orange\nD->a\nE->very") singleCharacter = false;
+
+correct output:
+D	null	null	S	S	
+null	E	B	A	A	
+null	null	BC	A	A	
+null	null	null	ABC	A	
+null	null	null	null	A	
+true
+
+6. isGeneratedByCFG("aabba","S->AB\nA->BB|a\nB->AB|b") singleCharacter = true
+correct output:
+
+A	null	BS	A	null	
+null	A	BS	A	null	
+null	null	B	A	null	
+null	null	null	B	null	
+null	null	null	null	A	
+false
